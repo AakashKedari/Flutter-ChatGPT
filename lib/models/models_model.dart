@@ -1,9 +1,7 @@
-import 'package:http/http.dart';
-
 class ModelsModel {
-  late final String id;
-  late final int created;
-  late final String root;
+  final String id;
+  final int created;
+  final String root;
 
   ModelsModel({
     required this.id,
@@ -11,8 +9,11 @@ class ModelsModel {
     required this.created,
   });
 
-  factory ModelsModel.fromJson(Map<String, dynamic> json) =>
-      ModelsModel(id: json['id'], root: json['root'], created: json['created']);
+  factory ModelsModel.fromJson(Map<String, dynamic> json) => ModelsModel(
+        id: json["id"],
+        root: json["root"],
+        created: json["created"],
+      );
 
   static List<ModelsModel> modelsFromSnapshot(List modelSnapshot) {
     return modelSnapshot.map((data) => ModelsModel.fromJson(data)).toList();

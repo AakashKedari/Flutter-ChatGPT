@@ -1,27 +1,35 @@
-import 'package:chatgpt/constants/constants.dart';
-import 'package:chatgpt/provider/models_provider.dart';
-import 'package:chatgpt/screens/splash.dart';
+import 'package:chatgpt_course/providers/models_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'constants/constants.dart';
+import 'screens/chat_screen.dart';
+
 void main() {
-  runApp(const Chatgpt());
+  runApp(const MyApp());
 }
 
-class Chatgpt extends StatelessWidget {
-  const Chatgpt({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ModelProvider()),
+        ChangeNotifierProvider(
+          create: (_) => ModelsProvider(),
+        ),
       ],
       child: MaterialApp(
-        home: const SplashScreen(),
+        title: 'Flutter ChatBOT',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             scaffoldBackgroundColor: scaffoldBackgroundColor,
-            appBarTheme: AppBarTheme(color: cardColor)),
+            appBarTheme: AppBarTheme(
+              color: cardColor,
+            )),
+        home: const ChatScreen(),
       ),
     );
   }

@@ -1,11 +1,10 @@
-import 'package:chatgpt/models/models_model.dart';
-import 'package:chatgpt/services/api_service.dart';
+import 'package:chatgpt_course/models/models_model.dart';
+import 'package:chatgpt_course/services/api_service.dart';
 import 'package:flutter/cupertino.dart';
 
-class ModelProvider with ChangeNotifier {
+class ModelsProvider with ChangeNotifier {
   String currentModel = "text-davinci-003";
-
-  String get getcurrentModel {
+  String get getCurrentModel {
     return currentModel;
   }
 
@@ -15,9 +14,10 @@ class ModelProvider with ChangeNotifier {
   }
 
   List<ModelsModel> modelsList = [];
-  // List<ModelsModel> get getmodelsList {
-  //   return modelsList;
-  // }
+
+  List<ModelsModel> get getModelsList {
+    return modelsList;
+  }
 
   Future<List<ModelsModel>> getAllModels() async {
     modelsList = await ApiService.getModels();
