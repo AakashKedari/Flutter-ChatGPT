@@ -6,6 +6,7 @@ import 'package:chatgpt/services/services.dart';
 import 'package:chatgpt/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/models_provider.dart';
@@ -50,11 +51,16 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         elevation: 2,
         leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(AssetsManager.openaiLogo),
-        ),
+            padding: const EdgeInsets.all(8.0),
+            child: Lottie.asset("assets/animations/chatGPTLogo.json",
+                width: 10, height: 10)
+            // Image.asset(AssetsManager.openaiLogo),
+            ),
         centerTitle: false,
-        title: const Text("ChatGPT"),
+        title: const Text(
+          "ChatGPT",
+          style: TextStyle(fontFamily: "PTSans"),
+        ),
         actions: [
           IconButton(
             onPressed: () async {

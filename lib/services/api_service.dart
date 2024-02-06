@@ -11,7 +11,7 @@ class ApiService {
   static Future<List<ModelsModel>> getModels() async {
     try {
       var response = await http.get(
-        Uri.parse("$BASE_URL/models"),
+        Uri.parse("$BASE_URL/assistants"),
         headers: {'Authorization': 'Bearer $API_KEY'},
       );
 
