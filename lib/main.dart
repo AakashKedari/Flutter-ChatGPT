@@ -1,13 +1,24 @@
-import 'package:chatgpt/providers/models_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
+import 'package:chatgpt/screens/splashscreen.dart';
+import 'package:chatgpt/services/assets_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/constants.dart';
 import 'providers/chats_provider.dart';
-import 'screens/chat_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  AssetsManager.likedResponses = prefs.getStringList('SavedResponses');
+
+  print(AssetsManager.likedResponses);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => ModelsProvider(),
-        ),
+
         ChangeNotifierProvider(
           create: (_) => ChatProvider(),
         ),
@@ -33,7 +42,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(
               color: cardColor,
             )),
-        home: const ChatScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
